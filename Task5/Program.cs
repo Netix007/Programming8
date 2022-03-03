@@ -11,19 +11,27 @@ int[,] GetArr(int[,] arr)
         {
             arr[count,i] = number;
             number++;
+            if (number > maxNumber)
+                break;
         }
         for (int j = count+1; j < arr.GetLength(0)-count; j++)
         {
+            if (number > maxNumber)
+                break;
             arr[j,arr.GetLength(1)-count-1] = number;
             number++;
         }
         for (int i = arr.GetLength(1) - count - 2; i >= count; i--)
         {
+            if (number > maxNumber)
+                break;
             arr[arr.GetLength(0)-count-1,i] = number;
             number++;
         }
         for (int j = arr.GetLength(0) - count - 2; j >= count+1 ; j--)
         {
+            if (number > maxNumber)
+                break;
             arr[j,count] = number;
             number++;
         }
@@ -35,18 +43,16 @@ int[,] GetArr(int[,] arr)
  
 void PrintArr(int[,] arr)
 {
-for (int i = 0; i < arr.GetLength(0); i++)
-{
-for (int j = 0; j < arr.GetLength(1); j++)
-{
-Console.Write(String.Format("{0,5}", arr[i,j]));
-}
-Console.WriteLine();
-}
+    for (int i = 0; i < arr.GetLength(0); i++)
+    {
+        for (int j = 0; j < arr.GetLength(1); j++)
+        {
+            Console.Write(String.Format("{0,5}", arr[i,j]));
+        }
+    Console.WriteLine();
+    }
 }
 
-int[,] arr = new int[6,6];
+int[,] arr = new int[5,6];
 arr = GetArr(arr);
 PrintArr(arr);
- 
-Console.WriteLine("Hello, World!");
